@@ -1,0 +1,372 @@
+# 2026-11-27 사용설명서(Docs/사용설명서.txt, Docs/MANUAL.md)의 순서를 그대로 눌러 보는 확인
+# 실행: Builds\Windows\CivilTwin.exe -force-vulkan -civiltwinScenario C:\Dev\CivilTwin\Tools\Scenarios\check-manual.txt
+# "꺼진 버튼" / "버튼을 찾지 못함" 줄이 로그에 나오면 설명서와 프로그램이 다른 곳이다.
+# (두 번 클릭 측정은 이 도구에 클릭 명령이 없어 확인하지 못한다.)
+
+wait 5
+capture 00_start
+
+# ---- 4절 처음 5분 ----
+log [4-1] 대안 → 예시 불러오기
+button 대안
+wait 0.3
+button 예시 불러오기
+wait 0.5
+capture 41_example_menu
+button 대안
+wait 1.5
+capture 41_example
+log [4-2] 재생 → 재생 (예시가 건물을 켜 둔다)
+button 건물
+wait 0.5
+capture 42_building_menu
+button 건물
+wait 0.5
+button 재생
+wait 0.3
+button 재생 (Space)
+button 재생
+wait 5
+capture 43_play_earthwork
+wait 15
+capture 43_play_building
+wait 20
+capture 43_play_end
+log [4-3] 건물 → 공정표 보기 (비교표가 닫히고 CPM이 보여야 한다)
+button 건물
+wait 0.3
+button 공정표 보기
+button 건물
+wait 1
+capture 44_building_schedule
+log [4-4] 대안 → 댐 네트워크 공정표 → 존 단면 보기 → 단계 1 ~ 12
+button 대안
+wait 0.3
+button 댐 네트워크 공정표
+wait 1
+capture 45_dam_schedule
+button 존 단면 보기
+wait 1
+button 3 유수전환
+wait 0.5
+capture 45_stage3
+button 12
+wait 0.5
+capture 45_stage12
+log [4-5] 대안 → 보고서 저장 (단면 화면의 [보고서 저장])
+button 보고서 저장
+wait 1
+capture 46_report_saved
+key Escape
+wait 0.5
+
+# ---- 5절 메뉴 하나씩 ----
+log [5] 현장 목록
+button 현대건설
+wait 0.5
+capture 50_site_list
+button 현대건설
+wait 0.5
+log [5] 부지 메뉴
+button 부지
+wait 0.5
+capture 51_menu_site
+button 균형 계획고
+wait 0.5
+button 바꾸기
+wait 0.5
+capture 51_rock
+button 부지
+log [5] 장비 메뉴
+button 장비
+wait 0.5
+capture 52_menu_equipment
+button 장비
+log [5] 재생 메뉴
+button 재생
+wait 0.5
+capture 53_menu_play
+button 재생
+log [5] 건물 메뉴
+button 건물
+wait 0.5
+capture 54_menu_building
+button 건물
+log [5] 대안 메뉴
+button 대안
+wait 0.5
+capture 55_menu_alt
+button 바꾸기 @0
+wait 0.5
+button 대안
+wait 0.5
+capture 55_graph
+log [5] 화면 메뉴
+button 화면
+wait 0.5
+capture 56_menu_screen
+button 바꾸기 @0
+wait 0.3
+button 처음 상태로
+wait 0.3
+button 키 안내
+wait 0.5
+capture 56_help
+key Escape
+wait 0.3
+button 화면
+key Tab
+wait 0.5
+capture 56_tab
+key Tab
+key Tab
+wait 0.5
+
+# ---- 6절 회사 구조물과 랜드마크 ----
+log [6-1] 소양강댐 쌓기
+button 부지
+wait 0.3
+button 소양강댐 쌓기
+button 부지
+wait 3
+capture 61_soyang_dam
+button 대안
+wait 0.3
+button 댐 시공 단계
+wait 1
+button 10 8·19
+wait 0.5
+button 마루 도달
+wait 0.5
+capture 61_flood_toggle
+button 마루 도달
+button 3D로 보기
+wait 2
+capture 61_3d
+button 반 잘라
+wait 1
+capture 61_3d_cut
+button 작업 자리로
+wait 1.5
+capture 61_3d_work
+button 장비 숨기기
+wait 0.5
+button 처음 시점
+wait 1
+capture 61_3d_home
+button 단면으로 보기
+wait 0.5
+button ▶ 다음 단계까지
+wait 4
+capture 61_next_stage
+button 공정표에서 이 날짜
+wait 1
+capture 61_schedule_from_stage
+log [7] 공정표: 작업 고르기, +30일, 지연 지우기
+button 여수로
+wait 0.5
+capture 70_spillway
+button ● 제1호
+wait 0.3
+button +30일
+wait 0.5
+capture 70_delay30
+button 지연 지우기
+wait 0.3
+key Escape
+wait 0.5
+button 부지
+wait 0.3
+button 댐 끝내기
+button 부지
+wait 1
+
+log [6-2] 청송양수
+button 현대건설
+wait 0.3
+button 2.
+wait 4
+button 대안
+wait 0.3
+button 댐 네트워크 공정표
+wait 1
+capture 62_cheongsong_schedule
+button 단계 보기
+wait 1
+capture 62_cheongsong_stage
+key Escape
+wait 0.5
+
+log [6-3] 부항댐: 단계 보기 → 표면차수벽 → 1개월 ▶
+button 삼성물산
+wait 0.3
+button 3.
+wait 4
+button 부지
+wait 0.3
+button 부항댐 쌓기
+button 부지
+wait 3
+capture 63_buhang_dam
+button 부지
+wait 0.3
+button 댐 끝내기
+button 부지
+button 대안
+wait 0.3
+button 댐 네트워크 공정표
+wait 1
+button 단계 보기
+wait 1
+button 8
+wait 0.5
+button 1개월 ▶
+button 1개월 ▶
+button 1개월 ▶
+wait 0.5
+capture 63_buhang_faceslab
+key Escape
+wait 0.5
+
+log [6-4] 인제양양터널 굴착 → Space, 장비에서 사갱 끄기, 터널 공정표
+button GS건설
+wait 0.3
+button 4.
+wait 4
+button 부지
+wait 0.3
+button 인제양양터널 굴착
+button 부지
+wait 2
+key Space
+wait 8
+capture 64_inje_play
+key Space
+button 장비
+wait 0.5
+button 바꾸기 @0
+wait 0.5
+capture 64_inje_no_shaft
+button 바꾸기 @0
+button 장비
+button 대안
+wait 0.3
+button 터널 네트워크 공정표
+wait 1
+capture 64_inje_schedule
+button 단계 보기
+wait 1
+capture 64_inje_stage
+key Escape
+wait 0.5
+button 부지
+wait 0.3
+button 터널 끝내기
+button 부지
+
+log [6-5] 예천양수
+button 대우건설
+wait 0.3
+button 5.
+wait 4
+button 대안
+wait 0.3
+button 댐 네트워크 공정표
+wait 1
+button 단계 보기
+wait 1
+capture 65_yecheon_stage
+key Escape
+wait 0.5
+
+log [6-6] 청계산3터널
+button DL이앤씨
+wait 0.3
+button 6.
+wait 4
+button 부지
+wait 0.3
+button 청계산3터널 굴착
+button 부지
+wait 2
+key Space
+wait 6
+capture 66_cheonggye_play
+key Space
+button 부지
+wait 0.3
+button 터널 끝내기
+button 부지
+
+log [6-7] 산성터널
+button 롯데건설
+wait 0.3
+button 7.
+wait 4
+button 부지
+wait 0.3
+button 산성터널 굴착
+button 부지
+wait 2
+key Space
+wait 6
+capture 67_sanseong_play
+key Space
+button 부지
+wait 0.3
+button 터널 끝내기
+button 부지
+
+log [6-8] 미사터널
+button 포스코이앤씨
+wait 0.3
+button 8.
+wait 4
+button 부지
+wait 0.3
+button 미사터널 굴착
+button 부지
+wait 2
+key Space
+wait 6
+capture 68_misa_play
+key Space
+button 부지
+wait 0.3
+button 터널 끝내기
+button 부지
+
+log [6-9] 인천대교: 교량 공정표 → 단계 보기 → 3 주탑 → 5 상판 → 3D → 측면 → 8 준공
+button IPARK
+wait 0.3
+button 9.
+wait 4
+button 대안
+wait 0.3
+button 교량 네트워크 공정표
+wait 1
+capture 69_bridge_schedule
+button 단계 보기
+wait 1
+button 3 주탑
+wait 0.5
+capture 69_bridge_pylon
+button 5 상판
+wait 0.3
+button 3D로 보기
+wait 2
+capture 69_bridge_3d
+button 측면으로 보기
+wait 0.5
+button 8 준공
+wait 0.5
+capture 69_bridge_done
+button 보고서 저장
+wait 1
+capture 69_bridge_report
+key Escape
+wait 0.5
+key F12
+wait 1
+log [8] F12 화면 저장 눌렀음
+quit

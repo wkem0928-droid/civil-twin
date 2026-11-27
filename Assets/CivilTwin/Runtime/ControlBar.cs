@@ -358,7 +358,7 @@ namespace CivilTwin.Runtime
 
                 case "대안":
                     // 예시 불러오기 (2026-11-20): README의 대표 예시를 버튼 하나로 다시 만든다.
-                    Buttons(("예시 불러오기: 소양강댐 장비 조합 A · B · C", () =>
+                    Buttons(("예시 불러오기: 가상 부지 + 5층 건물, 장비 A · B · C", () =>
                         _exampleMessage = ExamplePreset.Apply(_sites, _grading, _alternatives), _alternatives != null));
                     if (!string.IsNullOrEmpty(_exampleMessage)) Label(_exampleMessage);
                     bool alt = _alternatives != null && pad;

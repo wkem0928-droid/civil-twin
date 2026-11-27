@@ -64,8 +64,35 @@ namespace CivilTwin.Runtime
         /// <summary>그래프에 그리는 굴착기 대수의 범위 (1대 ~ 이 값). 지금 대수가 더 크면 거기까지 늘린다.</summary>
         private const int GraphMachines = 12;
 
-        /// <summary>비교표가 화면에 떠 있으면 true (다른 글상자들이 자리를 비켜 준다).</summary>
-        public bool ShowingTable => _mode != Mode.Off && _grading != null && _grading.HasPad && HudMode.ShowBoxes;
+        /// <summary>
+        /// 비교표가 화면에 떠 있으면 true (다른 글상자들이 자리를 비켜 준다).
+        /// 네트워크 공정표·시공 단계 화면을 여는 동안에는 그리지 않는다
+        /// (2026-11-27 사용설명서 확인: 댐 3D 단계 화면의 아래 버튼 줄을 비교표가 덮었다).
+        /// </summary>
+        public bool ShowingTable => _mode != Mode.Off && _grading != null && _grading.HasPad && HudMode.ShowBoxes && !StructureViewOpen;
+
+        private bool StructureViewOpen
+        {
+            get
+            {
+                var schedule = GetComponent<ScheduleView>();
+                var section = GetComponent<DamSectionView>();
+                return (schedule != null && schedule.IsOpen) || (section != null && section.IsOpen);
+            }
+        }
+
+        /// <summary>비교표·그래프가 마지막으로 그려진 자리 (GUI 좌표). 건물 글상자가 겹치지 않는지 볼 때 쓴다.</summary>
+        public Rect LastRect { get; private set; }
+
+        /// <summary>비교표·그래프를 닫는다 (건물 공정표를 열 때, 2026-11-27).</summary>
+        public void HideTable() => _mode = Mode.Off;
+
+        /// <summary>비교표·그래프를 연다. 같은 왼쪽 자리를 쓰는 건물 공정표(CPM)는 닫는다.</summary>
+        private void SetMode(Mode mode)
+        {
+            _mode = mode;
+            if (mode != Mode.Off && _building != null) _building.HideSchedule();
+        }
 
         public void Initialize(GradingPlanTool grading, BuildingSiteTool building)
         {
@@ -221,7 +248,7 @@ namespace CivilTwin.Runtime
         public void CycleMode()
         {
             if (_grading == null || !_grading.HasPad) return;
-            _mode = _mode == Mode.Off ? Mode.Table : (_mode == Mode.Table ? Mode.Graph : Mode.Off);
+            SetMode(_mode == Mode.Off ? Mode.Table : (_mode == Mode.Table ? Mode.Graph : Mode.Off));
         }
 
         /// <summary>지금 화면 상태 이름 (메뉴 표시용)</summary>
@@ -235,7 +262,7 @@ namespace CivilTwin.Runtime
             if (_grading == null || !_grading.HasPad) return;
             _saved[slot] = CurrentInput(Names[slot]);
             _hasSaved[slot] = true;
-            if (_mode == Mode.Off) _mode = Mode.Table;
+            if (_mode == Mode.Off) SetMode(Mode.Table);
         }
 
         /// <summary>저장한 조건을 불러와 적용한다 (공기·공정표·4D 재생이 그 조건으로 바뀐다).</summary>
@@ -312,6 +339,7 @@ namespace CivilTwin.Runtime
                     + (parts.Count > 0 ? "   |   " + string.Join(" · ", parts) : "   (저장한 대안 없음)");
                 float lw = _cell.CalcSize(new GUIContent(line)).x + 104f;
                 var box = new Rect(10f, HudMode.GuiHeight - 30f - 12f, lw, 30f);
+                LastRect = box;
                 HudStyle.DrawBox(box);
                 HudLayout.Register(box);
                 GUI.color = HudStyle.Ui(Color.white);
@@ -329,7 +357,8 @@ namespace CivilTwin.Runtime
             float tableHeight = 14f + rowHeight * rows;
             float x = 10f;
             float y = HudMode.GuiHeight - tableHeight - 12f;
-            HudStyle.DrawBox(new Rect(x, y, tableWidth, tableHeight));
+            LastRect = new Rect(x, y, tableWidth, tableHeight);
+            HudStyle.DrawBox(LastRect);
             InfoBox.CollapseButton(new Rect(x, y, tableWidth, tableHeight), false, HudMode.ToggleTableCollapsed, "표");
 
             float[] full = { tableWidth - 16f };
@@ -413,7 +442,8 @@ namespace CivilTwin.Runtime
             float boxHeight = 14f + rowHeight * 2 + 4f + 22f + plotHeight + 36f + 22f;
             float x = 10f;
             float y = HudMode.GuiHeight - boxHeight - 12f;
-            HudStyle.DrawBox(new Rect(x, y, boxWidth, boxHeight));
+            LastRect = new Rect(x, y, boxWidth, boxHeight);
+            HudStyle.DrawBox(LastRect);
 
             float[] full = { boxWidth - 16f };
             float cy = y + 6f;
@@ -436,12 +466,12 @@ namespace CivilTwin.Runtime
             float rightPlot = x + 56f + plotWidth + 70f;
 
             DrawLegend(leftPlot, cy, "전체 공기 (일)", "토공", EarthworkColor, "건물", BuildingColor);
-            DrawLegend(rightPlot, cy, "비용 (만 원)", "장비비", EquipmentColor, "기간 비례비", TimeColor);
+            DrawLegend(rightPlot, cy, "비용 (억 원)", "장비비", EquipmentColor, "기간 비례비", TimeColor);
 
             DrawAxis(leftPlot, plotY, plotWidth, plotHeight,
-                daysAxis.ToString("N0", Invariant), (daysAxis / 2.0).ToString("N0", Invariant));
+                daysAxis.ToString("0", Invariant), (daysAxis / 2.0).ToString("0", Invariant));
             DrawAxis(rightPlot, plotY, plotWidth, plotHeight,
-                (costAxis / 10000.0).ToString("N0", Invariant), (costAxis / 20000.0).ToString("N0", Invariant));
+                (costAxis / 1e8).ToString("0.#", Invariant), (costAxis / 2e8).ToString("0.#", Invariant));
 
             float slot = plotWidth / count;
             float bar = Mathf.Max(3f, slot * 0.68f);
@@ -574,10 +604,15 @@ namespace CivilTwin.Runtime
             };
         }
 
-        /// <summary>금액을 만 원 단위로 (예: 19,200,000 → "1,920만").</summary>
-        private static string Money(double won)
+        /// <summary>
+        /// 화면에 보이는 금액. 1억 원 이상은 억 원 (소수 한 자리), 그 아래는 만 원 (예: 3,251,820,000 → "32.5억", 500,000 → "50만").
+        /// 2026-11-27 사용설명서 확인: 표의 13 px 글자에서 천 단위 쉼표가 마침표처럼 보여 "306,132만"이 "306.132만"으로 읽혔다
+        /// → 쉼표가 필요 없는 단위로 바꿨다. 보고서(Markdown·CSV)의 금액은 원 단위 그대로다.
+        /// </summary>
+        public static string Money(double won)
         {
-            return (won / 10000.0).ToString("N0", Invariant) + "만";
+            if (System.Math.Abs(won) >= 1e8) return (won / 1e8).ToString("0.0", Invariant) + "억";
+            return (won / 10000.0).ToString("0", Invariant) + "만";
         }
 
         private void DrawRow(float x, float y, float[] widths, string[] cells, Color color)

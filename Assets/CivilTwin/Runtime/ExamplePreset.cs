@@ -10,6 +10,9 @@ namespace CivilTwin.Runtime
     ///   조건: 굴착기 4대, 하루 8시간, 간섭 없음, 암 없음 → 균형 계획고
     ///   대안: A = 트럭 4대,  B = 트럭 8대,  C = 굴착기 8대 + 트럭 8대.  끝나면 지금 = B 조건, 비교표를 띄운다.
     ///
+    /// 이 예시는 댐이 아니다: 소양강댐 현장 지형 위에 놓은 가상의 부지(토공) + 5층 건물이다. 댐은 [부지] → 소양강댐 쌓기.
+    /// 비교표의 전체 공기가 "토공 + 건물 5층"이므로 건물도 켠다 (2026-11-27 — 끈 채로 두어 재생은 토공만, 표는 건물 포함이라 서로 달랐다).
+    ///
     /// 현장 파일이 없으면(지형 파일은 저장소에 없다) 지금 현장의 화면 가운데에 같은 순서로 만든다 — 숫자는 README와 다르다.
     /// </summary>
     public static class ExamplePreset
@@ -37,6 +40,8 @@ namespace CivilTwin.Runtime
             if (!grading.HasPad) return "예시: 부지를 놓지 못함 (화면 가운데가 지형 밖)";
 
             grading.SetBalancedElevation();
+            var building = grading.GetComponent<BuildingSiteTool>();
+            if (building != null) building.TurnOn();   // 표의 전체 공기(토공 + 5층)와 재생을 맞춘다
             alternatives.Save(0);            // A: 굴착기 4, 트럭 4
             grading.ChangeTrucks(+4);
             alternatives.Save(1);            // B: 굴착기 4, 트럭 8
@@ -45,7 +50,7 @@ namespace CivilTwin.Runtime
             grading.ChangeMachines(-4);      // 지금 = B
 
             return exact
-                ? "예시: 소양강댐, 균형 계획고, A 트럭 4 · B 트럭 8 · C 굴착기 8 (README와 같은 조건)"
+                ? "예시: 소양강댐 옆 가상 부지 (토공 + 5층 건물, 댐 아님)"
                 : "예시: 소양강댐 파일이 없어 지금 현장 가운데에 만듦 (README와 숫자가 다름)";
         }
     }

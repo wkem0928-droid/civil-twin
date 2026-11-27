@@ -245,6 +245,18 @@ namespace CivilTwin.Runtime
         {
             if (!IsOn) return;
             _showTable = !_showTable;
+            // 공정표는 대안 비교표와 같은 왼쪽 자리를 쓴다. 비교표가 떠 있으면 공정표가 그려지지 않아
+            // "공정표 보기를 눌러도 아무것도 안 나온다"가 됐다 (2026-11-27 개발자 사용, 예시 불러오기 뒤) → 비교표를 닫는다.
+            if (_showTable) GetComponent<AlternativeTool>()?.HideTable();
+        }
+
+        /// <summary>건물 공정표를 닫는다 (대안 비교표를 열 때).</summary>
+        public void HideSchedule() => _showTable = false;
+
+        /// <summary>건물을 켠다 (이미 켜져 있으면 그대로). 예시 불러오기가 쓴다.</summary>
+        public void TurnOn()
+        {
+            if (!_on) ToggleBuilding();
         }
 
         /// <summary>부지 가까이 보기 ↔ 현장 전체 보기. 가까이 볼 때는 건물이 화면에 꽉 차는 거리로 간다.</summary>
@@ -691,9 +703,10 @@ namespace CivilTwin.Runtime
             if (_grading == null || !_grading.HasPad) return;
             if (!HudMode.Show(HudMode.Item.Info)) return;
 
-            // 대안 비교표가 떠 있는 동안에는 자리를 비켜 준다 (비교표가 왼쪽 아래를 쓴다).
+            // 대안 비교표가 왼쪽 아래를 쓴다. 공정표(크다)는 비교표가 있으면 그리지 않고 (공정표를 열 때 비교표를 닫는다),
+            // 짧은 건물 글상자는 비교표와 겹치지 않을 때만 함께 그린다 (2026-11-27: 예시 불러오기 뒤 건물 글상자가 안 보였다).
             var alternatives = GetComponent<AlternativeTool>();
-            if (alternatives != null && alternatives.ShowingTable) return;
+            bool tableShown = alternatives != null && alternatives.ShowingTable;
 
             if (_panel == null)
             {
@@ -712,6 +725,7 @@ namespace CivilTwin.Runtime
             // (옆에 따로 띄우면 작은 화면에서 오른쪽 글상자·그래프와 겹친다).
             if (IsOn && _showTable)
             {
+                if (tableShown) return;
                 EnsureSchedule();
                 DrawTable(10f, top);
                 return;
@@ -729,6 +743,7 @@ namespace CivilTwin.Runtime
             }
             float height = _panel.CalcHeight(new GUIContent(text), width);
             var rect = new Rect(10f, top, width, Mathf.Max(height, 30f));
+            if (tableShown && rect.yMax > alternatives.LastRect.yMin - 6f) return;   // 비교표와 겹치면 비켜 준다
             GUI.Box(rect, text, _panel);
             HudLayout.Register(rect);
             InfoBox.CollapseButton(rect, HudMode.BuildingCollapsed, HudMode.ToggleBuildingCollapsed, "건물");

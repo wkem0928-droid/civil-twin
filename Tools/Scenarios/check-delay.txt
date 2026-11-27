@@ -1,0 +1,16 @@
+# 2026-11-27 주공정 작업에 +30일 → 논리 준공이 30일 늦는지 (사용설명서 7절)
+wait 5
+button 대안
+wait 0.3
+button 댐 네트워크 공정표
+wait 1
+button ● 제1호
+wait 0.3
+capture 01_selected
+button +30일
+wait 0.5
+capture 02_delay30
+button 지연 지우기
+wait 0.5
+capture 03_cleared
+quit
