@@ -1,0 +1,60 @@
+# 5-1 ~ 5-4 화면 확인 (2026-11-20). 첫 현장 = 현대건설 소양강댐.
+# 실행: CLAUDE.md "자동 시연" 참고. 결과는 Logs/scenario/check-phase5_시각/
+
+wait 4                      # 지형을 불러올 때까지
+colortest 00_start          # 색 문제 비교: 저장 방법 세 가지
+
+mouse 0.5 0.5
+key G                       # 화면 가운데에 부지 놓기
+wait 1.5
+capture 01_pad              # 5-1 균형 줄, 5-4 굴착·운반·공기 줄
+
+key E                       # 5-2 균형 계획고
+wait 2
+capture 02_balanced
+
+key X                       # 5-3 암반선 1 m
+key X                       # 2 m
+key X                       # 5 m
+wait 1.5
+capture 03_rock5m
+
+key X                       # 10 m
+key X                       # 20 m
+key X                       # 없음 (원래대로)
+wait 1
+
+# 5-4 트럭 8대 → 2대
+key LeftShift+Comma
+key LeftShift+Comma
+key LeftShift+Comma
+key LeftShift+Comma
+key LeftShift+Comma
+key LeftShift+Comma
+wait 1
+capture 04_trucks2
+
+key Digit1                  # 대안 A 저장 (트럭 2대) → 비교표가 자동으로 켜짐
+key LeftShift+Period
+key LeftShift+Period
+key LeftShift+Period
+key LeftShift+Period
+key LeftShift+Period
+key LeftShift+Period        # 트럭 8대
+key Digit2                  # 대안 B 저장
+wait 1
+capture 05_table            # 비교표 (A: 트럭 2대, B: 8대)
+
+key O                       # 그래프
+wait 1
+capture 06_graph
+
+key O                       # 닫기
+wait 0.5
+key Space                   # 4D 재생
+wait 5
+key Space                   # 멈춤
+wait 1
+capture 07_playing
+
+quit

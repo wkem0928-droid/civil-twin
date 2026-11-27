@@ -1,0 +1,32 @@
+# 2026-11-27 인천대교 시공 단계 3D (실제 노선 위 상판·교각·역Y 주탑·케이블)
+
+wait 4
+button 현대건설
+wait 0.3
+button 9.
+wait 4
+button 대안
+wait 0.3
+button 교량 시공 단계
+wait 0.5
+button 3D로 보기
+wait 1
+button 2 주탑 기초
+wait 1
+capture 00_foundation
+button 3 주탑
+wait 1
+capture 01_pylon_climbing
+button 5 상판
+wait 1
+capture 02_deck_arms
+button 6 키
+wait 1
+capture 03_key
+button 8 준공
+wait 1
+capture 04_complete
+button 측면으로 보기
+wait 0.5
+capture 05_back_to_side
+quit

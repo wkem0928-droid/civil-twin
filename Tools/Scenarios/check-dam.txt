@@ -1,0 +1,62 @@
+# 2026-11-20 현대건설 소양강댐 사력댐 축조 (댐 모드) 확인
+# 예시 불러오기로 소양강댐 현장에 간 뒤, [부지] → [소양강댐 쌓기]. 공사 전 계곡 → 재생 중간 → 완공을 찍는다.
+
+wait 4
+button 대안
+wait 0.3
+button 예시 불러오기
+wait 0.3
+button 대안                  # 메뉴 접기
+key O                        # 비교표 → 그래프
+key O                        # 닫기
+wait 1
+
+button 부지
+wait 0.3
+button 소양강댐 쌓기
+wait 0.3
+capture 00_dam_menu
+button 부지                  # 메뉴 접기
+wait 2
+capture 01_dam_design
+
+key Tab                      # 글상자 → 시간 막대만
+key Tab                      # → 아무것도 없음 (깨끗한 화면)
+wait 0.5
+capture 01b_dam_clean
+key V                        # 보는 면: 원지반 (공사 전 계곡)
+wait 1
+capture 02_valley_clean
+key Tab                      # 글상자 다시 보이기
+wait 0.3
+capture 02_valley
+key V
+wait 0.5
+
+button 건물
+wait 0.3
+button 장비 보기
+button 건물                  # 메뉴 접기
+key B                        # 처음부터
+wait 0.5
+key Space
+wait 4
+key Space
+wait 1
+capture 03_dam_rising
+
+button 화면
+wait 0.3
+button 자세히
+button 화면
+wait 1
+capture 04_dam_detail
+
+button 부지
+wait 0.3
+button 댐 끝내기
+button 부지
+wait 2
+capture 05_dam_ended
+
+quit

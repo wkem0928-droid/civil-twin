@@ -1,0 +1,73 @@
+# 2026-11-21 회사 구조물 ②: GS건설 부항댐 (표면차수벽형 석괴댐) 확인
+# 현장 ▶ 두 번(소양강댐 → 청송 → 부항댐), [부지] → [부항댐 쌓기]. 완공 → 공사 전 계곡 → 재생 중간 → 자세히 → 보고서.
+
+wait 4
+button ▶
+wait 3
+button ▶
+wait 4
+button 부지
+wait 0.3
+capture 00_menu_before
+button 부항댐 쌓기
+wait 0.3
+capture 01_dam_menu
+button 부지                  # 메뉴 접기
+wait 2.5
+capture 02_dam_design
+
+key Tab
+key Tab                      # 글상자 숨김
+wait 0.5
+capture 03_dam_clean
+key V                        # 원지반 (공사 전 계곡)
+wait 1
+capture 04_valley_clean
+key V
+wait 0.5
+key Tab                      # 글상자 다시
+
+button 건물
+wait 0.3
+button 장비 보기
+button 건물
+key B
+wait 0.5
+key Space
+wait 4
+key Space
+wait 1
+capture 05_dam_rising
+key Tab
+key Tab
+wait 0.3
+capture 05b_dam_rising_clean
+key Tab
+
+button 건물
+wait 0.3
+button 부지 가까이
+button 건물
+key Tab
+key Tab
+wait 2.5
+capture 06_dam_equipment
+key Tab
+
+button 화면
+wait 0.3
+button 자세히
+button 화면
+wait 1
+capture 07_dam_detail
+button 화면
+wait 0.3
+button 간단히
+button 화면
+
+button 대안
+wait 0.3
+button 보고서 저장
+wait 1
+button 대안
+quit

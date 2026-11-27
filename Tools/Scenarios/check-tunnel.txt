@@ -1,0 +1,123 @@
+# 2026-11-21 회사 구조물 ③: 대우건설 인제양양터널 NATM 굴착 4D 확인
+# 현장 ▶ 세 번(소양강댐 → 청송 → 부항 → 인제양양), [부지] → 인제양양터널 굴착.
+
+wait 4
+button ▶
+wait 3
+button ▶
+wait 3
+button ▶
+wait 4
+button 부지
+wait 0.3
+button 인제양양터널 굴착
+wait 0.3
+capture 00_menu
+button 부지                  # 메뉴 접기
+wait 3
+capture 01_start             # 0일째: 전부 회색, 입구 막장 기둥
+
+key Space                    # 재생 (20초에 라이닝 끝, 관통은 약 13초)
+wait 6
+key Space
+wait 0.5
+capture 02_progress_a        # 약 400일째 (사갱 막장 시작 뒤)
+key Space
+wait 6
+key Space
+wait 0.5
+capture 03_progress_b        # 약 800일째 (관통 직전)
+key Tab
+key Tab                      # 글상자 숨김 (종단면은 남는다)
+wait 0.3
+capture 03b_clean
+key Tab
+key Space
+wait 3.5
+key Space
+wait 0.5
+capture 03c_lining            # 약 1,030일째: 관통 뒤 2차 라이닝 (콘크리트 색)
+
+button 장비
+wait 0.3
+capture 04_equipment_menu
+button 바꾸기                # 가운데 사갱 막장 → 없음
+wait 0.5
+capture 05_no_middle
+button 바꾸기                # 다시 사용
+button 장비
+button 장비
+wait 0.3
+button 바꾸기 @4             # 라이닝 시작: 굴착과 병행 (사갱·거푸집·용수 다음 네 번째)
+button 장비
+key B
+key Space
+wait 8
+key Space
+wait 0.5
+capture 05b_concurrent_lining   # 약 420일째: 굴착 중인데 입구 쪽은 벌써 라이닝 (콘크리트 색)
+button 장비
+wait 0.3
+button 바꾸기 @4             # 다시 관통 뒤
+button 장비
+
+button 화면
+wait 0.3
+button 자세히
+button 화면
+wait 0.5
+capture 06_detail
+button 대안
+wait 0.3
+button 보고서 저장
+wait 1
+capture 06b_report_saved
+button 대안
+button 화면
+wait 0.3
+button 간단히
+button 화면
+
+key Space
+wait 16
+wait 1
+capture 07_finished          # 라이닝까지 끝
+
+# 단면 모식도 (자세히): 입구 근처 P-5 (상하반 분할·강지보) — 30일째
+button 화면
+wait 0.3
+button 자세히
+button 화면
+key B
+key M
+key M
+key M
+wait 0.5
+capture 07b_section_p5
+button 화면
+wait 0.3
+button 간단히
+button 화면
+
+# 포스코이앤씨 산성터널 (현장 ▶ 세 번 더: 인제 → 예천 → 롯데 → 산성)
+button ▶
+wait 3
+button ▶
+wait 3
+button ▶
+wait 4
+button 부지
+wait 0.3
+button 산성터널 굴착
+button 부지
+wait 3
+key Space
+wait 8
+key Space
+wait 0.5
+capture 08_sanseong
+button 장비
+wait 0.3
+capture 09_sanseong_menu
+button 장비
+quit

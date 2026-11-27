@@ -1,0 +1,60 @@
+# 2026-11-20 굴착기 → 덤프트럭 적재 확인 (부지 토공), 그리고 댐 위 장비 배치 확인
+# 예시를 불러온 뒤 장비 보기·가까이 보기. 재생 중 공사 중(토공) 날짜에서 화면을 여러 번 찍는다.
+
+wait 4
+button 대안
+wait 0.3
+button 예시 불러오기
+wait 0.3
+button 대안
+key O
+key O
+button 건물
+wait 0.3
+button 건물·장비 보기
+button 건물
+key B
+key Space
+wait 2
+key Space
+button 건물
+wait 0.3
+button 부지 가까이
+button 건물
+key Tab
+key Tab
+wait 3
+capture 00_loading_a
+wait 10
+capture 01_loading_b
+wait 20
+capture 02_loading_c
+key Tab
+wait 0.3
+capture 03_with_text
+button 건물
+wait 0.3
+button 현장 전체 보기        # 가까이 보기 끄기
+button 건물
+
+button 부지
+wait 0.3
+button 소양강댐 쌓기
+button 부지
+button 건물
+wait 0.3
+# (장비는 앞에서 켠 것이 댐에서도 그대로 보인다 — 버튼 이름이 "장비 끄기"라 누르지 않는다)
+button 건물
+key B
+key Space
+wait 3
+key Space
+button 건물
+wait 0.3
+button 부지 가까이
+button 건물
+key Tab
+key Tab
+wait 2
+capture 04_dam_equipment
+quit

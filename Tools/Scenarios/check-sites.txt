@@ -1,0 +1,148 @@
+# 2026-11-20 나머지 현장 동작 확인: 현장을 하나씩 넘기며 부지 놓기 → 균형 계획고 → 재생 (예외가 없는지, 숫자가 나오는지)
+
+wait 4
+button ▶
+wait 5
+button 부지
+wait 0.3
+button 부지 놓기
+wait 0.3
+button 균형 계획고
+wait 1.5
+button 부지
+wait 2
+capture 01_site
+key Space
+wait 3
+key Space
+wait 0.5
+capture 01_site_play
+key H
+wait 0.5
+button ▶
+wait 5
+button 부지
+wait 0.3
+button 부지 놓기
+wait 0.3
+button 균형 계획고
+wait 1.5
+button 부지
+wait 2
+capture 02_site
+key Space
+wait 3
+key Space
+wait 0.5
+capture 02_site_play
+key H
+wait 0.5
+button ▶
+wait 5
+button 부지
+wait 0.3
+button 부지 놓기
+wait 0.3
+button 균형 계획고
+wait 1.5
+button 부지
+wait 2
+capture 03_site
+key Space
+wait 3
+key Space
+wait 0.5
+capture 03_site_play
+key H
+wait 0.5
+button ▶
+wait 5
+button 부지
+wait 0.3
+button 부지 놓기
+wait 0.3
+button 균형 계획고
+wait 1.5
+button 부지
+wait 2
+capture 04_site
+key Space
+wait 3
+key Space
+wait 0.5
+capture 04_site_play
+key H
+wait 0.5
+button ▶
+wait 5
+button 부지
+wait 0.3
+button 부지 놓기
+wait 0.3
+button 균형 계획고
+wait 1.5
+button 부지
+wait 2
+capture 05_site
+key Space
+wait 3
+key Space
+wait 0.5
+capture 05_site_play
+key H
+wait 0.5
+button ▶
+wait 5
+button 부지
+wait 0.3
+button 부지 놓기
+wait 0.3
+button 균형 계획고
+wait 1.5
+button 부지
+wait 2
+capture 06_site
+key Space
+wait 3
+key Space
+wait 0.5
+capture 06_site_play
+key H
+wait 0.5
+button ▶
+wait 5
+button 부지
+wait 0.3
+button 부지 놓기
+wait 0.3
+button 균형 계획고
+wait 1.5
+button 부지
+wait 2
+capture 07_site
+key Space
+wait 3
+key Space
+wait 0.5
+capture 07_site_play
+key H
+wait 0.5
+button ▶
+wait 5
+button 부지
+wait 0.3
+button 부지 놓기
+wait 0.3
+button 균형 계획고
+wait 1.5
+button 부지
+wait 2
+capture 08_site
+key Space
+wait 3
+key Space
+wait 0.5
+capture 08_site_play
+key H
+wait 0.5
+quit

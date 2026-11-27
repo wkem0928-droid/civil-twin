@@ -1,0 +1,69 @@
+# 2026-11-25 댐 시공 단계 3D의 장비와 댐 보고서 저장 확인
+
+wait 4
+button 대안
+wait 0.3
+button 댐 시공 단계
+wait 1
+button 3D로 보기
+wait 2
+button 2 가배수터널
+button 1개월 ▶
+button 1개월 ▶
+button 작업 자리로
+wait 2
+capture 01_tunnel_portal
+button 3 유수전환
+button 작업 자리로
+wait 2
+capture 02_cofferdam
+button 4 기초굴착
+button 1개월 ▶
+button 작업 자리로
+wait 2
+capture 03_excavation
+button 5 기초처리
+button 1개월 ▶
+button 작업 자리로
+wait 2
+capture 04_grout
+button 7 성토 1년째
+button 작업 자리로
+wait 2
+capture 05_fill_close
+equipclock 700
+wait 1
+capture 06_fill_close_later
+button 처음 시점
+wait 2
+capture 07_fill_far
+button 장비 숨기기
+wait 0.5
+capture 08_hidden
+button 장비 보기
+button 9 담수
+button 반 잘라
+button 작업 자리로
+wait 2
+capture 09_cut_close
+button ■ 반 잘라
+button 11 성토 완료
+button 작업 자리로
+wait 2
+capture 10_spillway
+button 보고서 저장
+wait 0.5
+capture 11_report_toast
+button 단면으로 보기
+wait 1
+button 공정표에서
+wait 1
+capture 12_schedule
+button +30일
+button 보고서 저장
+wait 0.5
+capture 13_schedule_report
+key Escape
+wait 1
+capture 14_closed
+quit

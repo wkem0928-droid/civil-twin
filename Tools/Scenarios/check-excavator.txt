@@ -1,0 +1,30 @@
+# 2026-11-20 굴착기 한 사이클 동작 확인 (Cm 19초, 선회 90°): 단계 경계 자세를 멈춰서 찍는다.
+# 0초 A 굴착 시작 → 5.7초 B 굴착 끝 → 8.075초 적재 선회 중간(45°) → 10.45초 C 들어 올림(90°) → 13.3초 D 덤프 → 16초 복귀 중
+
+wait 4
+key Tab
+key Tab
+showroom 0 215 12 22
+excavator 0
+wait 0.3
+capture 00_dig_start
+excavator 5.7
+wait 0.3
+capture 01_dig_end
+excavator 8.075
+wait 0.3
+capture 02_swing_loaded
+excavator 10.45
+wait 0.3
+capture 03_lifted
+excavator 13.3
+wait 0.3
+capture 04_dump
+excavator 16
+wait 0.3
+capture 05_swing_back
+showroom 0 300 10 22
+excavator 2.5
+wait 0.3
+capture 06_side_digging
+quit

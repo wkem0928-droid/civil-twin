@@ -1,0 +1,50 @@
+# 5-7 보고서 확인 (2026-11-20). 소양강댐, README 예시와 같은 대안 A(트럭 4) · B(트럭 8) · C(굴착기 8 + 트럭 8).
+
+wait 4
+button 부지
+wait 0.3
+button 부지 놓기
+wait 1.5
+button 균형 계획고
+wait 2
+
+button 장비
+wait 0.3
+button − @2                 # 트럭 8 → 4
+button − @2
+button − @2
+button − @2
+button 대안
+wait 0.3
+button A                    # A 저장
+button 장비
+wait 0.3
+button + @2
+button + @2
+button + @2
+button + @2                 # 트럭 8
+button 대안
+wait 0.3
+button B                    # B 저장
+button 장비
+wait 0.3
+button +                    # 굴착기 4 → 8
+button +
+button +
+button +
+button 대안
+wait 0.3
+button C                    # C 저장
+button 장비
+wait 0.3
+button −                    # 굴착기 8 → 4 (지금 = B와 같은 조건)
+button −
+button −
+button −
+button 대안
+wait 0.3
+button 보고서 저장
+wait 1
+capture 01_report_saved
+
+quit

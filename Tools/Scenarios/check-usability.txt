@@ -1,0 +1,48 @@
+# 2026-11-20 개발자 사용 의견 반영 확인: "부지를 놓아도 글상자에 가려 보이지 않는다"
+# 개발자가 실제로 누른 순서와 같게: 부지 놓기 → 예시 → 건물 재생 → 자세히
+
+wait 4
+capture 00_start
+button 부지
+wait 0.3
+button 부지 놓기
+wait 0.3
+button 부지                  # 메뉴 접기
+wait 2                       # 카메라가 부지로 다가갈 때까지
+capture 01_pad_placed
+
+button 대안
+wait 0.3
+button 예시 불러오기
+wait 0.3
+button 대안                  # 메뉴 접기
+wait 2
+capture 02_example
+
+key O                        # 비교표 → 그래프
+key O                        # 닫기
+button 건물
+wait 0.3
+button 건물·장비 보기
+button 부지 가까이
+button 건물                  # 메뉴 접기
+wait 2
+key Space
+wait 16
+key Space
+wait 1
+capture 03_building_play
+button 접기 건물                    # 왼쪽 건물 글상자 접기 (2026-11-21)
+wait 0.5
+capture 03b_building_collapsed
+button 펼치기 건물
+wait 0.3
+
+button 화면
+wait 0.3
+button 자세히
+button 화면                  # 메뉴 접기
+wait 1
+capture 04_detail
+
+quit

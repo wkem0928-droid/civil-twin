@@ -1,0 +1,58 @@
+# 2026-11-22 소양강댐 시공 단계 · 존 단면 확인 (메뉴 [대안] → 댐 시공 단계 · 존 단면)
+
+wait 4
+button 대안
+wait 0.3
+button 댐 시공 단계
+wait 1
+capture 00_start                    # 1 착공: 강이 흐르는 계곡
+button 2 가배수터널
+wait 0.5
+capture 00b_tunnel                  # 터널은 단면 밖 → 진행률 막대가 보여야 한다 (2026-11-26)
+button 3 유수전환
+wait 0.5
+capture 01_diversion                # 강물을 터널로, 하류만 물
+button 다음 단계 ▶
+wait 0.5
+capture 02_excavation               # 기초굴착 시작
+button 1개월 ▶
+button 1개월 ▶
+wait 0.5
+capture 03_excavation_2months       # 퇴적층을 걷어 내는 중
+button 5 기초처리
+button 1개월 ▶
+button 1개월 ▶
+wait 0.5
+capture 04_grout                    # 그라우트 커튼
+button 6 성토 시작
+button ▶ 다음 단계까지
+wait 6
+capture 05_played_to_step7          # 재생: 다음 단계(성토 1년째)에서 멈춰야 한다
+button 9 담수
+wait 0.5
+capture 06_impound
+button 10 8·19
+wait 0.5
+capture 07_flood_check              # 두 기록 비교: 11.10 완공이면 97 m ↔ 기사 123 m, 하루 성토량 +10 %
+button 마루 도달
+wait 0.5
+capture 07b_flood_article           # 기사 가정: 이날 123 m, 시간 막대에 마무리 구간(옅게)
+button 3D로 보기
+wait 2.5
+capture 07c_flood_article_3d        # 3D도 같은 가정 (마루까지 성토)
+button 단면으로 보기
+button 마루 도달
+wait 0.5
+button 12 준공
+wait 0.5
+capture 08_complete
+button 공정표에서 이 날짜 보기
+wait 0.8
+capture 09_schedule_marker          # 공정표에 하늘색 날짜 선
+button 존 단면 보기
+wait 0.8
+capture 10_back_to_section
+key Escape
+wait 0.5
+capture 11_closed
+quit

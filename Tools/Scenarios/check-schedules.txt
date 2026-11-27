@@ -1,0 +1,93 @@
+# 2026-11-27 공통 틀: 회사 구조물마다 네트워크 공정표 (부항댐 → 인제양양터널 → 산성터널)
+# 현장 목록 버튼(현장 이름)으로 바로 고른다: 3. 부항댐, 4. 인제양양터널, 7. 산성터널
+
+wait 4
+button 현대건설
+wait 0.3
+button 3.
+wait 4
+button 대안
+wait 0.3
+capture 00_menu_buhang            # [대안] 메뉴에 "댐 네트워크 공정표"
+button 댐 네트워크 공정표
+wait 0.8
+capture 01_buhang_schedule        # 표준 공정 (소양강댐 비율), 표면차수벽 작업
+button 단계 보기
+wait 0.5
+button 7 축조
+wait 0.5
+capture 01b_buhang_stage_half     # 단면 윤곽: 축조 절반
+button 8 표면차수벽
+button 1개월 ▶
+button 1개월 ▶
+button 1개월 ▶
+wait 0.5
+capture 01c_buhang_stage_slab     # 상류면 슬래브가 아래부터
+key Escape
+wait 0.3
+
+button GS건설
+wait 0.3
+button 4.
+wait 4
+button 대안
+wait 0.3
+button 터널 네트워크 공정표
+wait 0.8
+capture 02_inje_schedule          # 사갱 경로 여유 60일, 양 끝 막장이 주공정
+button 보고서 저장
+wait 0.5
+capture 03_inje_saved
+button 단계 보기
+wait 0.5
+button 5 굴착
+wait 0.5
+capture 03b_inje_stage_half       # 양 끝 + 사갱 막장 4개
+button 7 라이닝
+button ◀ 1개월
+button ◀ 1개월
+wait 0.5
+capture 03c_inje_stage_lining     # 관통 뒤 라이닝 진행
+key Escape
+wait 0.3
+
+button 대우건설
+wait 0.3
+button 7.
+wait 4
+button 대안
+wait 0.3
+button 터널 네트워크 공정표
+wait 0.8
+capture 04_sanseong_schedule
+key Escape
+wait 0.3
+
+button 포스코이앤씨
+wait 0.3
+button 9.
+wait 4
+capture 05_incheon_site            # 랜드마크 인천대교 현장 (바다는 0 m로 평평)
+button 대안
+wait 0.3
+button 교량 네트워크 공정표
+wait 0.8
+capture 06_incheon_schedule        # 주탑 → 사장교 상판이 주공정, 실제 준공은 371일 뒤
+button 보고서 저장
+wait 0.5
+button 단계 보기
+wait 0.5
+button 3 주탑
+wait 0.5
+capture 07_incheon_pylon           # 주탑 오르는 중, 고가교 경간이 얹히는 중
+button 5 상판
+wait 0.5
+capture 08_incheon_deck            # 주탑에서 양쪽으로 상판과 케이블
+button 6 키
+wait 0.5
+capture 09_incheon_key
+button 8 준공
+wait 0.5
+capture 10_incheon_complete
+key Escape
+quit

@@ -1,0 +1,31 @@
+# 2026-11-20 장비 모양 확인: 현장에서 멀리 떨어진 전시장에 모든 장비를 세우고 가까이 찍는다.
+# showroom 장비번호 방위각 고도각 거리 — 0 굴착기, 1 덤프트럭, 2 불도저, 3 롤러, 4 레미콘, 5 펌프카, 6 타워크레인, −1 전체
+
+wait 4
+key Tab                      # 글상자 → 시간 막대만
+key Tab                      # → 아무것도 없음
+showroom -1 200 14 80
+wait 1
+capture 00_all
+showroom 0 235 14 17
+wait 0.5
+capture 01_excavator
+showroom 1 250 12 15
+wait 0.5
+capture 02_dump_truck
+showroom 2 240 14 11
+wait 0.5
+capture 03_bulldozer
+showroom 3 240 14 11
+wait 0.5
+capture 04_roller
+showroom 4 250 12 15
+wait 0.5
+capture 05_mixer
+showroom 5 215 16 30
+wait 0.5
+capture 06_pump
+showroom 6 200 12 75
+wait 0.5
+capture 07_crane
+quit

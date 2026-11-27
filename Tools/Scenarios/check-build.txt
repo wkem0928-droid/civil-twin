@@ -1,0 +1,78 @@
+# 2026-11-21 빌드한 실행 파일(Builds\Windows\CivilTwin.exe) 확인: 처음 화면, 예시 불러오기(대안표), 댐, 터널
+# 실행: Builds\Windows\CivilTwin.exe -force-vulkan -civiltwinScenario C:\Dev\CivilTwin\Tools\Scenarios\check-build.txt
+#       (이 PC는 DX11이 멈추므로 -force-vulkan. 결과는 Builds\Windows\Logs\scenario\)
+
+wait 5
+capture 00_start
+button 대안
+wait 0.3
+button 예시 불러오기
+wait 0.3
+button 대안
+wait 2
+capture 01_example
+button 부지
+wait 0.3
+button 소양강댐 쌓기
+button 부지
+wait 3
+capture 02_dam
+button ▶
+wait 3
+button ▶
+wait 3
+button ▶
+wait 4
+button 부지
+wait 0.3
+button 인제양양터널 굴착
+button 부지
+wait 3
+key Space
+wait 8
+key Space
+wait 0.5
+capture 03_tunnel
+button 화면
+wait 0.3
+button 자세히
+button 화면
+key B
+key M
+key M
+key M
+wait 0.5
+capture 04_tunnel_section        # 단면 모식도 텍스처 색 (선형 색 공간)
+
+# 2026-11-27: 공통 시공 단계 틀 · 랜드마크 인천대교 (실행 파일에서도)
+button 화면
+wait 0.3
+button 처음 상태로
+button 화면
+button 대우건설
+wait 0.3
+button 9.
+wait 4
+button 대안
+wait 0.3
+button 교량 네트워크 공정표
+wait 0.8
+capture 05_bridge_schedule
+button 단계 보기
+wait 0.5
+button 5 상판
+button 3D로 보기
+wait 1.5
+capture 06_bridge_3d
+key Escape
+wait 0.3
+button 랜드마크
+wait 0.3
+button 5.
+wait 4
+button 대안
+wait 0.3
+button 댐 시공 단계
+wait 0.8
+capture 07_yecheon_stage
+quit

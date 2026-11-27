@@ -1,0 +1,133 @@
+# 2026-11-21 화면 항목 켜기·끄기 확인 (메뉴 [화면] → 항목마다 켜기/끄기, 처음 상태로)
+# 같은 이름 버튼은 위에서부터 찾는다: 항목 순서 = 정보 글상자, 측정 안내, 표고 범례, 누적 토공 그래프, 터널 단면 모식도, 이름표, 시간 막대·종단면
+
+wait 4
+button 대안
+wait 0.3
+button 예시 불러오기
+wait 0.3
+button 대안
+wait 2
+capture 00_example_default          # 처음 상태 (그래프·단면 꺼짐)
+button 접기 글상자                         # 오른쪽 정보 글상자 접기 (제목 한 줄)
+wait 0.5
+capture 00b_info_collapsed
+button 펼치기 글상자
+wait 0.5
+button 접기 표                      # 대안 비교표 → 한 줄 요약
+wait 0.5
+capture 00c_table_collapsed
+button 펼치기 표
+wait 0.3
+
+button 화면
+wait 0.3
+capture 01_screen_menu              # 항목별 켜짐/꺼짐 목록
+button 끄기                         # 정보 글상자
+button 끄기                         # 측정 안내
+button 끄기                         # 표고 범례
+button 화면
+wait 0.5
+capture 02_info_measure_legend_off  # 지형과 부지만
+
+button 화면
+wait 0.3
+button 바꾸기 @2                    # 대안 비교: 비교표 → 그래프 (첫 바꾸기는 글자 크기)
+button 바꾸기 @2                    # 그래프 → 닫힘
+button 화면
+wait 0.5
+capture 02b_table_closed            # 대안 비교표도 닫음 → 지형만
+
+button 화면
+wait 0.3
+button 처음 상태로
+button 켜기                         # 누적 토공 그래프 (꺼져 있는 첫 항목)
+button 화면
+wait 0.5
+capture 03_graph_on                 # 간단 글상자 + 누적 그래프
+
+button 화면
+wait 0.3
+button 처음 상태로
+button 화면
+
+# 터널: 단면 켜고 정보 글상자 끄기
+button 현대건설                     # 현장 이름 → 현장 목록 (2026-11-21)
+wait 0.3
+capture 03a_site_list
+button 4.                           # 4. 대우건설 · 인제양양터널
+wait 4
+button 부지
+wait 0.3
+button 인제양양터널 굴착
+button 부지
+wait 3
+key Space
+wait 6
+key Space
+wait 0.5
+button 접기 글상자                         # 터널 글상자 접기 → 이름 · 관통일 · 진행률 한 줄
+wait 0.5
+capture 03b_tunnel_collapsed
+button 접기 종단면                   # 터널 종단면도 한 줄로
+wait 0.5
+capture 03c_profile_collapsed
+button 펼치기 종단면
+wait 0.3
+button 펼치기 글상자
+wait 0.3
+button 화면
+wait 0.3
+button 켜기 @2                      # 터널 단면 모식도 (꺼진 항목: 그래프, 단면)
+button 끄기                         # 정보 글상자
+button 화면
+wait 0.5
+capture 04_tunnel_section_no_info
+
+button 화면
+wait 0.3
+button 끄기 @5                      # 시간 막대·종단면 (켜진 항목: 측정, 범례, 단면, 이름표, 종단면)
+button 화면
+wait 0.5
+capture 05_tunnel_no_profile
+
+button 화면
+wait 0.3
+button 처음 상태로
+button 화면
+wait 0.5
+capture 06_tunnel_default
+
+# 글자 크기: 1100 × 505 창에서는 크게(1.25)가 맞지 않아 건너뛰고 작게(0.85)가 된다. 배율 상태에서 메뉴 버튼이 제자리에서 눌리는지도 본다.
+button 화면
+wait 0.3
+button 바꾸기                       # 글자 크기
+wait 0.3
+capture 07_scale_menu
+button 화면                         # 배율 상태에서 메뉴 닫기 (버튼 위치 확인)
+wait 0.5
+capture 08_scale_large
+button 화면
+wait 0.3
+button 처음 상태로                  # 글자 크기도 보통으로
+button 화면
+wait 0.5
+capture 09_back_to_default
+
+# 키 안내 (F1): 열고, 닫기 버튼으로 닫기
+key F1
+wait 0.5
+capture 10_key_help
+button 닫기 (F1·Esc)
+wait 0.5
+capture 11_help_closed
+
+# 재생 속도 (메뉴 [재생]): × 1 → × 2 → 다시 × 1
+button 재생
+wait 0.3
+button 빠르게
+wait 0.3
+capture 12_speed_menu
+button 느리게
+button 재생
+quit

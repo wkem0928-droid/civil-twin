@@ -1,0 +1,51 @@
+# 2026-11-20 전체 검토 뒤 확인: 새 글상자 모양·배경·절성토 색, 예시 불러오기, 암이 섞인 균형 계획고
+
+wait 4
+capture 00_start                    # 시작 안내, 배경색
+
+button 대안
+wait 0.3
+button 예시 불러오기
+wait 2
+capture 01_example_table            # 소양강댐, A·B·C, 비교표
+
+button 대안                         # 메뉴 접기
+wait 0.5
+capture 02_example_clean
+
+button 대안
+wait 0.3
+button 보고서 저장
+wait 1
+
+# 암이 섞인 균형 계획고: 암반선 5 m → E
+button 부지
+wait 0.3
+button 바꾸기                       # 암반선 1 m
+button 바꾸기                       # 2 m
+button 바꾸기                       # 5 m
+wait 1
+button 균형 계획고
+wait 2
+capture 03_rock_balanced
+
+button 바꾸기                       # 10 m
+button 바꾸기                       # 20 m
+button 바꾸기                       # 없음
+button 균형 계획고
+wait 2
+button 부지                         # 메뉴 접기
+
+button 건물
+wait 0.3
+button 건물·장비 보기
+button 부지 가까이
+wait 2
+button 건물                         # 메뉴 접기
+key Space
+wait 16
+key Space
+wait 1
+capture 04_building
+
+quit

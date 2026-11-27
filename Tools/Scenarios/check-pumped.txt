@@ -1,0 +1,41 @@
+# 2026-11-27 남은 회사 구조물: 삼성물산 청송양수 · DL이앤씨 예천양수 (상·하부댐 + 지하 발전소·수로)
+
+wait 4
+button 현대건설
+wait 0.3
+button 2.
+wait 4
+button 대안
+wait 0.3
+button 댐 네트워크 공정표
+wait 0.8
+capture 00_cheongsong_schedule      # 주공정: 준비 → 지하 발전소 → 설비 → 시운전
+button 단계 보기
+wait 0.5
+button 3 상부댐
+wait 0.5
+capture 01_cheongsong_upper
+button 5 발전설비
+wait 0.5
+capture 02_cheongsong_equipment
+key Escape
+wait 0.3
+
+button 삼성물산
+wait 0.3
+button 5.
+wait 4
+button 대안
+wait 0.3
+button 댐 네트워크 공정표
+wait 0.8
+capture 03_yecheon_schedule         # 하부댐은 자료 날짜 (2009.9 ~ 2010.6)
+button 보고서 저장
+wait 0.5
+button 단계 보기
+wait 0.5
+button 6 담수
+wait 0.5
+capture 04_yecheon_impound
+key Escape
+quit

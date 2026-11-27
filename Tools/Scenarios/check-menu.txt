@@ -1,0 +1,65 @@
+# 5-6 화면 메뉴 확인: 키 대신 버튼만으로 조작 (2026-11-20). 첫 현장 = 소양강댐.
+
+wait 4
+capture 00_closed
+button 부지                 # 메뉴 [부지] 펼치기
+wait 0.5
+capture 01_site_panel
+button 부지 놓기             # 화면 가운데에 부지
+wait 1.5
+button 균형 계획고
+wait 2
+capture 02_balanced
+
+button 장비                 # [장비] 펼치기 (부지는 접힘)
+wait 0.3
+button − @2                 # 덤프트럭 − (첫 번째 −는 굴착기)
+button − @2
+button − @2
+button − @2
+button − @2
+button − @2
+wait 0.5
+capture 03_trucks2
+
+button 대안
+wait 0.3
+button A                    # 지금 조건을 A로 저장 (트럭 2대)
+button 장비
+wait 0.3
+button + @2
+button + @2
+button + @2
+button + @2
+button + @2
+button + @2                 # 트럭 8대
+button 대안
+wait 0.3
+button B                    # B로 저장
+wait 0.5
+capture 04_alt_panel
+
+button 건물
+wait 0.3
+button 건물·장비 보기
+button 부지 가까이
+wait 2
+button 재생                 # [재생] 펼치기
+wait 0.3
+button 재생 (Space)
+wait 6
+button 멈춤
+wait 0.5
+capture 05_play
+
+button 화면
+wait 0.3
+capture 06_screen_panel
+button 줄이기               # 글상자 → 시간 막대만
+wait 0.5
+capture 07_timebar_only
+button 글상자 보이기
+wait 0.5
+capture 08_restored
+
+quit

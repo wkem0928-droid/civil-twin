@@ -1,0 +1,22 @@
+# 2026-11-22 소양강댐 네트워크 공정표 확인 (메뉴 [대안] → 댐 네트워크 공정표)
+
+wait 4
+button 대안
+wait 0.3
+capture 00_menu
+button 댐 네트워크 공정표
+wait 1
+capture 01_schedule                 # 처음: 본댐 성토 선택
+button 여수로
+wait 0.5
+capture 02_spillway                 # 여유 361일, 실제 232일 넘겨 늦게 시작
+button ● 제1호
+wait 0.3
+button +30일
+wait 0.5
+capture 03_tunnel_delay             # 주공정 +30일 → 논리 준공 +30일
+button 지연 지우기
+key Escape
+wait 0.5
+capture 04_closed
+quit

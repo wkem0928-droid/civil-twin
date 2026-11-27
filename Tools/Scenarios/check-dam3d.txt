@@ -1,0 +1,54 @@
+# 2026-11-22 소양강댐 시공 단계 3D 확인 ([대안] → 댐 시공 단계 · 존 단면 → [3D로 보기])
+
+wait 4
+button 대안
+wait 0.3
+button 댐 시공 단계
+wait 1
+button 3D로 보기
+wait 2
+capture 00_valley                   # 1 착공: 강이 흐르는 공사 전 계곡
+button 2 가배수터널
+button 1개월 ▶
+button 1개월 ▶
+button 1개월 ▶
+button 1개월 ▶
+button 1개월 ▶
+button 1개월 ▶
+wait 1
+capture 01_tunnel_digging           # 터널을 양쪽에서 뚫는 중 (주황 점선)
+button 3 유수전환
+wait 1
+capture 02_diversion                # 가물막이, 강물은 터널로
+button 4 기초굴착
+button 1개월 ▶
+wait 1
+capture 03_excavation               # 퇴적층을 걷어 암반
+button 5 기초처리
+button 1개월 ▶
+button 1개월 ▶
+wait 1
+capture 04_grout                    # 그라우트 점선
+button 7 성토 1년째
+wait 1
+capture 05_fill_year1               # 성토 윗면의 코어·필터 띠
+button 반 잘라
+wait 1
+capture 06_cut                      # 잘라 본 존 단면
+button 9 담수
+wait 1
+capture 07_impound
+button ■ 반 잘라
+button 11 성토 완료
+wait 1
+capture 08_fill_done
+button 12 준공
+wait 1
+capture 09_complete
+button 단면으로 보기
+wait 1
+capture 10_back_to_section
+key Escape
+wait 1
+capture 11_closed                   # 원래 지형이 다시 보여야 한다
+quit

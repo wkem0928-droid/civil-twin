@@ -1,0 +1,10 @@
+# README 예시 보고서 다시 만들기 (Docs/examples/report-soyanggang.md): 예시 불러오기 → 보고서 저장
+wait 4
+button 대안
+wait 0.3
+button 예시 불러오기
+wait 1
+button 보고서 저장
+wait 1.5
+button 대안
+quit

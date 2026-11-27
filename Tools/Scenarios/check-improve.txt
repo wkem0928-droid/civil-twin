@@ -1,0 +1,99 @@
+# 2026-11-20 개선 확인: 흙쌓기 조(대안표·글상자), 트럭이 적재함을 들어 흙을 부림, 댐 공사 초반 장비 범위, 트럭 모형
+
+wait 4
+button 대안
+wait 0.3
+button 예시 불러오기
+wait 0.3
+button 대안                  # 메뉴 접기
+wait 1.5
+capture 00_example_table     # 다짐 조 열, 흙쌓기 장비비 줄
+
+key O                        # 그래프
+key O                        # 닫기
+button 화면
+wait 0.3
+button 자세히
+button 화면
+wait 1
+capture 01_detail_text       # "다짐" 줄
+button 화면
+wait 0.3
+button 간단히
+button 화면
+
+# 트럭 흙 부리기: 장비 시계를 덤프 직전으로 (적재 247초 → 나감 10초 → 회전 4초 → 덤프 261 ~ 269초)
+button 건물
+wait 0.3
+button 건물·장비 보기
+button 건물
+key B
+key Space
+wait 2
+key Space                    # 토공 중에 멈춤
+equipclock 262
+wait 0.3
+key Tab
+key Tab                      # 글상자 숨김
+lookat truck0 135 22 26
+wait 3
+equipclock 264.6
+wait 0.3
+capture 02_truck_dumping     # 덤프 진행 약 0.45: 다 든 채 흙이 쏟아지는 중
+equipclock 267.8
+wait 0.3
+capture 03_truck_lowering
+equipclock 258.5
+wait 0.3
+capture 04_truck_turning     # 반대편에서 도는 중 (아직 가득)
+equipclock 0
+key Tab                      # 글상자 다시 전체
+
+# 댐: 공사 초반(좁은 층)에서 장비가 비탈을 타지 않는지
+button 건물
+wait 0.3
+button 건물·장비 끄기
+button 건물
+button 부지
+wait 0.3
+button 소양강댐 쌓기
+button 부지
+wait 2
+button 건물
+wait 0.3
+button 장비 보기
+button 건물
+key B
+key Space
+wait 1.5
+key Space
+key Tab
+key Tab                      # 글상자 숨김 (장비가 가려지지 않게)
+lookat truck0 210 35 55
+wait 3
+capture 05_dam_early
+lookat truck0 120 20 70
+wait 3
+capture 05b_dam_early_along
+key Space
+wait 6
+key Space
+lookat truck0 210 35 55
+wait 3
+capture 06_dam_later
+
+# 전시장: 트럭 모형 (적재함 내림 → 반쯤 → 다 듦)
+showroom 1 215 14 13
+truckbed 0 1
+wait 0.5
+capture 07_model_down
+truckbed 0.45 0.7
+wait 0.3
+capture 08_model_half
+truckbed 1 0.15
+wait 0.3
+capture 09_model_up
+showroom 1 120 10 12
+wait 0.3
+capture 10_model_up_side
+quit

@@ -1,0 +1,61 @@
+# ===== Unity가 자동으로 다시 만드는 폴더 (저장소에 넣지 않는다) =====
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj/
+/[Bb]uild/
+/[Bb]uilds/
+/[Ll]ogs/
+/[Uu]ser[Ss]ettings/
+/[Mm]emoryCaptures/
+/[Rr]ecordings/
+
+# ===== Visual Studio / Rider가 만드는 파일 =====
+.vs/
+.idea/
+*.csproj
+*.sln
+*.slnx
+*.suo
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+
+# ===== Unity 임시 파일과 크래시 보고서 =====
+*.pidb.meta
+*.pdb.meta
+*.mdb.meta
+sysinfo.txt
+crashlytics-build.properties
+/[Aa]ssets/Plugins/Editor/JetBrains*
+
+# ===== 빌드 결과물 =====
+*.apk
+*.aab
+*.unitypackage
+*.app
+
+# ===== Windows =====
+Thumbs.db
+Desktop.ini
+
+# ===== 지형 원본 데이터 (용량이 크고, 출처별 이용 조건이 있어 저장소에 넣지 않는다) =====
+/Data/
+
+# ===== 프로그램이 만드는 보고서 (5-7, 메뉴 [대안] → 보고서 저장). 예시 한 부는 Docs/examples/에 둔다 =====
+/[Rr]eports/
+
+# ===== Claude 개인 설정 =====
+.claude/settings.local.json
+
+# 주의: .meta 파일은 무시하면 안 된다.
+# Unity는 .meta 안의 guid로 파일을 찾으므로 .asset과 .meta는 항상 함께 커밋한다.
+
+# ===== 빌드할 때 성능 테스트 패키지가 자동으로 만드는 파일 (2026-11-21) =====
+/[Aa]ssets/[Rr]esources/PerformanceTestRun*
+/[Aa]ssets/[Rr]esources.meta

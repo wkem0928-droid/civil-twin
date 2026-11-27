@@ -1,0 +1,56 @@
+# 2026-11-27 남은 회사 구조물: 롯데건설 청계산3터널, HDC현대산업개발 미사터널 (굴착 4D · 공정표 · 단계)
+
+wait 4
+button 현대건설
+wait 0.3
+button 6.
+wait 4
+button 부지
+wait 0.3
+button 청계산3터널 굴착
+wait 0.3
+button 부지
+wait 3
+capture 00_cheonggye_start
+key Space
+wait 6
+key Space
+wait 0.5
+capture 01_cheonggye_digging        # 양 끝 막장, 글상자에 "관통일 공개 자료 없음"
+button 대안
+wait 0.3
+button 터널 네트워크 공정표
+wait 0.8
+capture 02_cheonggye_schedule
+button 단계 보기
+wait 0.5
+button 4 굴착
+wait 0.5
+capture 03_cheonggye_stage
+key Escape
+wait 0.3
+
+button 롯데건설
+wait 0.3
+button 8.
+wait 4
+button 부지
+wait 0.3
+button 미사터널 굴착
+wait 0.3
+button 부지
+wait 3
+key Space
+wait 6
+key Space
+wait 0.5
+capture 04_misa_digging
+button 대안
+wait 0.3
+button 터널 네트워크 공정표
+wait 0.8
+capture 05_misa_schedule
+button 보고서 저장
+wait 0.5
+key Escape
+quit
